@@ -1,0 +1,127 @@
+.navbar {
+  background: var(--white);
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 12px rgba(92, 61, 46, 0.08);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brown);
+  letter-spacing: 0.5px;
+}
+
+.brand-icon {
+  color: var(--gold);
+  font-size: 1.2rem;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--brown);
+  background: var(--cream-dark);
+}
+
+.admin-link {
+  color: var(--gold-dark);
+  border: 1.5px solid var(--gold);
+  margin-left: 0.5rem;
+}
+
+.admin-link:hover {
+  background: var(--gold);
+  color: var(--text-dark);
+}
+
+.logout-btn {
+  color: #e74c3c;
+}
+
+.logout-btn:hover {
+  background: #fdecea;
+  color: #c0392b;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--brown);
+  transition: var(--transition);
+  border-radius: 2px;
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+
+  .navbar-nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.5rem;
+    border-bottom: 2px solid var(--border);
+    gap: 0.25rem;
+    box-shadow: var(--shadow);
+  }
+
+  .navbar-nav.active { display: flex; }
+
+  .nav-link { width: 100%; }
+  .admin-link { margin-left: 0; }
+}
