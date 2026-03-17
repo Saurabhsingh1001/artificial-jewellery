@@ -12,8 +12,12 @@ api.interceptors.request.use((config) => {
 });
 
 // Products
-export const getProducts = (category) =>
-  api.get('/products', { params: category ? { category } : {} });
+// export const getProducts = (category) =>
+//   api.get('/products', { params: category ? { category } : {} });
+
+export const getProducts = (params) => {
+  return api.get(`/products`, { params });
+};
 
 export const getProductById = (id) => api.get(`/products/${id}`);
 

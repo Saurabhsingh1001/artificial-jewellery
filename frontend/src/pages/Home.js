@@ -4,18 +4,18 @@ import ProductCard from '../components/ProductCard';
 import { getProducts } from '../services/api';
 import './Home.css';
 
-// const CATEGORIES = ['Necklace', 'Earrings', 'Bangles', 'Rings', 'Bracelets', 'Anklets'];
+const CATEGORIES = ['Necklace', 'Earrings', 'Bangles', 'Rings', 'Bracelets', 'Anklets'];
 
 const Home = () => {
   const [featured, setFeatured] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getProducts()
-      .then((res) => setFeatured(res.data.slice(0, 6)))
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
+  getProducts({ page: 1 })
+    .then((res) => setFeatured(res.data.products.slice(0, 6)))
+    .catch(console.error)
+    .finally(() => setLoading(false));
+}, []);
 
   return (
     <div className="home">
@@ -33,7 +33,7 @@ const Home = () => {
       </section>
 
       {/* Categories */}
-      {/* <section className="categories-section">
+      <section className="categories-section">
         <div className="container">
           <div className="section-title">
             <h2>Shop by Category</h2>
@@ -48,7 +48,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Featured Products */}
       <section className="featured-section">

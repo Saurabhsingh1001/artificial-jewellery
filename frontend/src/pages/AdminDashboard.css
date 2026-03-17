@@ -147,6 +147,45 @@
 
 .table-actions { display: flex; gap: 0.5rem; }
 
+.admin-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-search {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 250px;
+}
+
+.admin-category-filter {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.pagination {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.pagination button {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+}
+
+.pagination button.active-page {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
 @media (max-width: 768px) {
   .dashboard-sidebar { display: none; }
   .dashboard-main { padding: 1.25rem; }

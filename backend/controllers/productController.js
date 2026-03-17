@@ -5,12 +5,46 @@ const path = require('path');
 // @desc    Get all products
 // @route   GET /api/products
 // @access  Public
+// @desc    Get all products
+// @route   GET /api/products
+// @access  Public
+
 const getProducts = async (req, res) => {
   try {
-    const { category } = req.query;
-    const filter = category ? { category } : {};
-    const products = await Product.find(filter).sort({ createdAt: -1 });
-    res.json(products);
+    const {
+      category,
+      search = "",
+      page = 1,
+      limit = 12
+    } = req.query;
+
+    const filter = {};
+
+    if (category && category !== "All") {
+      filter.category = category;
+    }
+
+    if (search) {
+      filter.name = { $regex: search, $options: "i" };
+    }
+
+    const pageNumber = parseInt(page);
+    const pageSize = parseInt(limit);
+
+    const total = await Product.countDocuments(filter);
+
+    const products = await Product.find(filter)
+      .sort({ createdAt: -1 })
+      .skip((pageNumber - 1) * pageSize)
+      .limit(pageSize);
+
+    res.json({
+      products,
+      page: pageNumber,
+      pages: Math.ceil(total / pageSize),
+      total
+    });
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
